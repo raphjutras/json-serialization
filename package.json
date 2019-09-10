@@ -6,7 +6,25 @@
   "types": "dist/index.d.ts",
   "author": "Arrian Pascual",
   "license": "MIT",
-  "keywords": ["object-mapper", "json-serialization", "typescript mapper", "object mapper", "json serialization", "json-serialization", "typescript serialization", "serializer"],
+  "keywords": [
+    "object-mapper",
+    "json-serialization",
+    "typescript mapper",
+    "object mapper",
+    "json serialization",
+    "json-serialization",
+    "typescript serialization",
+    "serializer"
+  ],
+  "homepage": "https://github.com/apascual-pl/json-serialization#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apascual-pl/json-serialization"
+  },
+  "bugs": {
+    "type": "git",
+    "url": "https://github.com/apascual-pl/json-serialization/issues"
+  },
   "scripts": {
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
     "serialization:build": "tsc",
