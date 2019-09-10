@@ -1,16 +1,16 @@
 {
-  "name": "@peerlancers/ts-object-mapper",
+  "name": "@peerlancers/json-serialization",
   "description": "A typescript library for JSON object serialization.",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Arrian Pascual",
   "license": "MIT",
-  "keywords": ["object-mapper", "ts-object-mapper", "typescript mapper", "object mapper"],
+  "keywords": ["object-mapper", "json-serialization", "typescript mapper", "object mapper", "json serialization", "json-serialization", "typescript serialization", "serializer"],
   "scripts": {
     "test": "ts-node node_modules/jasmine/bin/jasmine --config=jasmine.json",
-    "mapper:build": "tsc",
-    "mapper:publish": "npm run mapper:build && npm run test && npm publish --access public",
+    "serialization:build": "tsc",
+    "serialization:publish": "npm run serialization:build && npm run test && npm publish --access public",
     "execute": "npm run build && cd dist && node sample.js"
   },
   "typescript": {
