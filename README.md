@@ -1,17 +1,17 @@
-# ts-object-mapper
+# json-serialization
 
 > A typescript library for JSON object serialization.
 
 ## Install
 
 ```bash
-npm install @peerlancers/ts-object-mapper
+npm install @peerlancers/json-serialization
 ```
 
 or
 
 ```bash
-yarn add @peerlancers/ts-object-mapper
+yarn add @peerlancers/json-serialization
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ export class Person {
 
 Example on how to use the deserialization
 ```typescript
-import { JsonProperty, deserialize } from '@peerlancers/ts-object-mapper';
+import { JsonProperty, deserialize } from '@peerlancers/json-serialization';
 
 const jsonObject: any = {
   firstName: 'John',
@@ -49,7 +49,7 @@ export class ApiService {
 
 Example on how to use the serialization
 ```typescript
-import { serialize } from '@peerlancers/ts-object-mapper';
+import { serialize } from '@peerlancers/json-serialization';
 
 const personObject: Person = new Person();
 personObject.firstName = 'John';
