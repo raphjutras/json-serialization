@@ -11,6 +11,12 @@ describe('deserializing object:', () => {
       lastName: 'Doe',
       gender: 'Male',
       age: 25,
+      maritalStatus: null,
+      friends: [
+        'recca',
+        { name: 'goku', skill: 'sayan' },
+        'gohan'
+      ],
       skills: [
         'playing-guitar',
         'playing-piano',
@@ -33,12 +39,19 @@ describe('deserializing object:', () => {
     };
 
     var deserializedPerson = deserialize(Person, personJson);
+
     expect(deserializedPerson).toBeDefined();
     expect(deserializedPerson.firstName).toBe('John');
     expect(deserializedPerson.lastName).toBe('Doe');
     expect(deserializedPerson.fullName).toBe('John Doe');
     expect(deserializedPerson.currentAge).toBe(25);
+    expect(deserializedPerson.maritalStatus).toBeNull();
     expect(deserializedPerson.gender).toBe(Gender.Male);
+
+    expect(deserializedPerson.friends.length).toBe(3);
+    expect(deserializedPerson.friends[0]).toBe('recca');
+    expect(deserializedPerson.friends[1].name).toBe('goku');
+    expect(deserializedPerson.friends[2]).toBe('gohan');
 
     expect(deserializedPerson.skills.length).toBe(3);
     expect(deserializedPerson.skills[0]).toBe('playing-guitar');

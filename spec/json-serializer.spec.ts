@@ -11,6 +11,13 @@ describe('serialize', () => {
     personDetails.lastName = 'Doe';
     personDetails.gender = Gender.Male;
     personDetails.currentAge = 25;
+    personDetails.maritalStatus = null;
+
+    personDetails.friends = [];
+    personDetails.friends.push('recca');
+    personDetails.friends.push({ name: 'goku', skill: 'sayan' });
+    personDetails.friends.push('gohan');
+
     personDetails.skills = ['playing-guitar', 'playing-piano', 'vocalist'];
     personDetails.children = [];
 
@@ -36,7 +43,13 @@ describe('serialize', () => {
     expect(serializedPerson.lastName).toBe('Doe');
     expect(serializedPerson.fullName).toBeUndefined();
     expect(serializedPerson.age).toBe(25);
+    expect(serializedPerson.maritalStatus).toBeNull();
     expect(serializedPerson.gender).toBe('Male');
+
+    expect(serializedPerson.friends.length).toBe(3);
+    expect(serializedPerson.friends[0]).toBe('recca');
+    expect(serializedPerson.friends[1].name).toBe('goku');
+    expect(serializedPerson.friends[2]).toBe('gohan');
 
     expect(serializedPerson.skills.length).toBe(3);
     expect(serializedPerson.skills[0]).toBe('playing-guitar');

@@ -32,6 +32,9 @@ export class Person {
   @JsonProperty()
   public skills: string[] = undefined;
 
+  @JsonProperty()
+  public friends: any[] = undefined;
+
   @JsonProperty({
     serializer: GenderSerialization,
     deserializer: GenderSerialization
@@ -39,6 +42,9 @@ export class Person {
   public gender: Gender = undefined;
 
   public ignoredField: string = undefined;
+
+  @JsonProperty()
+  public maritalStatus: string = null;
 
   public get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
