@@ -15,15 +15,16 @@ export interface IJsonObject {
  * @param jsonObject Json object to be deserialized
  * @return Deserialized target object instance
  */
-export function deserialize<T extends IJsonObject>(target: new () => T, jsonObject: IJsonObject): T {
+export function deserialize<T extends IJsonObject>(target: new (...args: any[]) => T, jsonObject: IJsonObject): T {
   if (!jsonObject) { return undefined as any; }
   if (typeof (jsonObject) !== 'object') { return undefined as any; }
   return deserializeObject(target, jsonObject);
 }
 
 function deserializeObject<T>(classObject: { new(): T }, jsonObject: IJsonObject): any {
-  let targetInstance = new classObject();
+  if (!classObject) { return jsonObject; }
 
+  let targetInstance = new classObject();
   Object.keys(targetInstance).forEach((propertyKey: string) => {
     targetInstance[propertyKey] = deserializeProperty(
       targetInstance,
@@ -55,10 +56,7 @@ function deserializeProperty(targetInstance: any, propertyKey: string, jsonObjec
   }
 
   if (isObject(jsonValue)) {
-    if (!propertyMetadata.target) {
-      throw new Error(`Cannot convert object if the target is not defined. Please provide a target class.`);
-    }
-    return deserializeObject(propertyMetadata.target, jsonValue);
+    return deserializeObject(propertyMetadata.target || Object, jsonValue);
   }
   return jsonValue;
 }
