@@ -44,6 +44,9 @@ export class Person {
   public ignoredField: string = undefined;
 
   @JsonProperty()
+  public parent: Person = undefined;
+
+  @JsonProperty()
   public maritalStatus: string = null;
 
   public get fullName(): string {

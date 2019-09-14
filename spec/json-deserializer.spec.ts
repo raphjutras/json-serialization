@@ -12,6 +12,10 @@ describe('deserializing object:', () => {
       gender: 'Male',
       age: 25,
       maritalStatus: null,
+      parent: {
+        firstName: 'saitama',
+        lastName: 'one-punch'
+      },
       friends: [
         'recca',
         { name: 'goku', skill: 'sayan' },
@@ -47,6 +51,9 @@ describe('deserializing object:', () => {
     expect(deserializedPerson.currentAge).toBe(25);
     expect(deserializedPerson.maritalStatus).toBeNull();
     expect(deserializedPerson.gender).toBe(Gender.Male);
+
+    expect(deserializedPerson.parent.firstName).toBe('saitama');
+    expect(deserializedPerson.parent.lastName).toBe('one-punch');
 
     expect(deserializedPerson.friends.length).toBe(3);
     expect(deserializedPerson.friends[0]).toBe('recca');

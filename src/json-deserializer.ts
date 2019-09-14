@@ -56,7 +56,8 @@ function deserializeProperty(targetInstance: any, propertyKey: string, jsonObjec
   }
 
   if (isObject(jsonValue)) {
-    return deserializeObject(propertyMetadata.target || Object, jsonValue);
+    if (!propertyMetadata.target) { return new Object(jsonValue); }
+    return deserializeObject(propertyMetadata.target, jsonValue);
   }
   return jsonValue;
 }
