@@ -1,7 +1,7 @@
 {
   "name": "@peerlancers/json-serialization",
   "description": "A typescript library for deserializing JSON to object and serializing object to JSON.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Arrian Pascual",

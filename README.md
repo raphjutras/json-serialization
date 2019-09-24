@@ -63,6 +63,49 @@ export class ApiService {
 }
 ```
 
+You can also set your custom deserializer or serializer and it will output based on the predicate
+```typescript
+import { deserialize, serialize, IJsonDeserializer, IJsonSerializer } from '@peerlancers/json-serialization';
+
+export enum Gender {
+  Male = 1,
+  Female = 2
+}
+
+export class GenderSerialization implements IJsonSerializer, IJsonDeserializer {
+  public serialize(value: any): any {
+    return `${Gender[value]}`;
+  }
+
+  public deserialize(value: any): any {
+    return Gender[value];
+  }
+}
+
+export class Person {
+  @JsonProperty()
+  public firstName: string = undefined;
+
+  @JsonProperty({
+    serializer: GenderSerialization,
+    deserializer: GenderSerialization
+  })
+  public gender: Gender = undefined;
+}
+
+const personObject: Person = new Person();
+personObject.firstName = 'John';
+personObject.lastName = 'Doe';
+personObject.gender = Gender.Male;
+
+export class ApiService {
+
+  public setPerson(): Person {
+    return serialize(personObject);
+  }
+}
+```
+
 ## License
 
 [MIT](http://vjpr.mit-license.org)

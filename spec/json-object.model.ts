@@ -16,6 +16,14 @@ export class GenderSerialization implements IJsonSerializer, IJsonDeserializer {
   }
 }
 
+export class Hobby {
+  @JsonProperty({ name: 'title' })
+  public hobbyName: string = undefined;
+
+  @JsonProperty()
+  public description: string = undefined;
+}
+
 export class Person {
   @JsonProperty()
   public firstName: string = undefined;
@@ -31,6 +39,9 @@ export class Person {
 
   @JsonProperty()
   public skills: string[] = undefined;
+
+  @JsonProperty({ target: Hobby })
+  public hobbies: Hobby[] = undefined;
 
   @JsonProperty()
   public friends: any[] = undefined;
