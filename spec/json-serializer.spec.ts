@@ -1,6 +1,7 @@
 import {
   Person,
-  Gender
+  Gender,
+  Hobby
 } from './json-object.model';
 import { serialize } from '../src/json-serializer';
 
@@ -19,8 +20,14 @@ describe('serialize', () => {
     personDetails.friends.push('gohan');
 
     personDetails.skills = ['playing-guitar', 'playing-piano', 'vocalist'];
-    personDetails.children = [];
 
+    personDetails.hobbies = [];
+    let firstHobby = new Hobby();
+    firstHobby.hobbyName = 'playing-guitar';
+    firstHobby.description = 'It helps me relax';
+    personDetails.hobbies.push(firstHobby);
+
+    personDetails.children = [];
     let firstChild = new Person();
     firstChild.firstName = 'JohnKid1';
     firstChild.lastName = 'Doe1';
@@ -38,6 +45,7 @@ describe('serialize', () => {
     personDetails.children.push(secondChild);
 
     var serializedPerson = serialize(personDetails);
+
     expect(serializedPerson).toBeDefined();
     expect(serializedPerson.firstName).toBe('John');
     expect(serializedPerson.lastName).toBe('Doe');
@@ -56,6 +64,10 @@ describe('serialize', () => {
     expect(serializedPerson.skills[1]).toBe('playing-piano');
     expect(serializedPerson.skills[2]).toBe('vocalist');
 
+    expect(serializedPerson.hobbies.length).toBe(1);
+    expect(serializedPerson.hobbies[0].title).toBe('playing-guitar');
+    expect(serializedPerson.hobbies[0].description).toBe('It helps me relax');
+
     expect(serializedPerson.children.length).toBe(2);
     expect(serializedPerson.children[0].fullName).toBeUndefined();
     expect(serializedPerson.children[0].age).toBe(3);
@@ -66,7 +78,7 @@ describe('serialize', () => {
     expect(serializedPerson.children[1].gender).toBe('Male');
   });
 
-  it('should serialized the property fields in the model since theyre not part of the payload.', () => {
+  it('should serialized the property fields in the model since they are not part of the payload.', () => {
     var personDetails = new Person();
     personDetails.firstName = 'John';
     personDetails.lastName = 'Doe';
